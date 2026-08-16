@@ -1,0 +1,76 @@
+<view class="page">
+  <!-- ========== 搜索模式: 直接商品列表 ========== -->
+  <block wx:if="{{isSearch}}">
+    <view class="search-hint">搜索"{{keyword}}" 的结果</view>
+    <view class="product-grid" wx:if="{{products.length}}">
+      <product-card wx:for="{{products}}" wx:key="id" product="{{item}}" />
+    </view>
+    <view class="empty" wx:elif="{{!loading}}">
+      <text class="empty-icon">🧸</text>
+      <text>没有找到相关商品</text>
+    </view>
+    <view class="load-more" wx:if="{{loading}}">加载中...</view>
+    <view class="load-more" wx:elif="{{!hasMore && products.length}}">— 没有更多了 —</view>
+  </block>
+
+  <!-- ========== 专区模式 ========== -->
+  <block wx:else>
+    <!-- 一级视图: 组别小卡片 -->
+    <view wx:if="{{!activeGroup}}" class="group-grid">
+      <view
+        wx:for="{{groupCards}}"
+        wx:key="name"
+        class="group-card"
+        data-group="{{item.name}}"
+        bindtap="onGroupTap"
+      >
+        <view class="group-name">{{item.name}}</view>
+        <view class="group-sub">查看商品 ›</view>
+      </view>
+    </view>
+
+    <!-- 二级视图: 组内商品列表 -->
+    <view wx:else>
+      <scroll-view scroll-x class="group-chips" enhanced show-scrollbar="{{false}}">
+        <view
+          wx:for="{{groups}}"
+          wx:key="*this"
+          class="group-chip {{activeGroup === item ? 'group-chip-active' : ''}}"
+          data-group="{{item}}"
+          bindtap="onGroupTap"
+        >{{item}}</view>
+      </scroll-view>
+
+      <!-- 小分组筛选(仅组别下配置了小分组时显示) -->
+      <scroll-view wx:if="{{subGroups.length}}" scroll-x class="subgroup-chips" enhanced show-scrollbar="{{false}}">
+        <view
+          class="subgroup-chip {{activeSubGroup === '' ? 'subgroup-chip-active' : ''}}"
+          data-subgroup=""
+          bindtap="onSubGroupTap"
+        >全部</view>
+        <view
+          wx:for="{{subGroups}}"
+          wx:key="*this"
+          class="subgroup-chip {{activeSubGroup === item ? 'subgroup-chip-active' : ''}}"
+          data-subgroup="{{item}}"
+          bindtap="onSubGroupTap"
+        >{{item}}</view>
+      </scroll-view>
+
+      <view class="group-title">
+        {{activeGroup}}<text wx:if="{{activeSubGroup}}" class="group-title-sub"> · {{activeSubGroup}}</text>
+      </view>
+
+      <view class="product-grid" wx:if="{{products.length}}">
+        <product-card wx:for="{{products}}" wx:key="id" product="{{item}}" />
+      </view>
+      <view class="empty" wx:elif="{{!loading}}">
+        <text class="empty-icon">🧸</text>
+        <text>{{activeSubGroup ? activeSubGroup : activeGroup}}暂无商品</text>
+        <text class="empty-tip">可联系商家上新</text>
+      </view>
+      <view class="load-more" wx:if="{{loading}}">加载中...</view>
+      <view class="load-more" wx:elif="{{!hasMore && products.length}}">— 没有更多了 —</view>
+    </view>
+  </block>
+</view>

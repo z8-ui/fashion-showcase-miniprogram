@@ -1,0 +1,166 @@
+.page {
+  padding-bottom: 60rpx;
+}
+
+/* 顶部品牌标题 */
+.brand-header {
+  padding: 40rpx 32rpx 8rpx;
+  text-align: center;
+}
+.brand-name {
+  font-size: 52rpx;
+  font-weight: 800;
+  color: #FF6B00;
+  letter-spacing: 8rpx;
+}
+.brand-slogan {
+  font-size: 22rpx;
+  color: #999;
+  margin-top: 8rpx;
+  letter-spacing: 2rpx;
+}
+
+/* 轮播(动态宣传图) */
+.banner {
+  height: 300rpx;
+  margin: 20rpx 24rpx 8rpx;
+  border-radius: 20rpx;
+  overflow: hidden;
+}
+.banner-item {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.banner-img {
+  width: 100%;
+  height: 100%;
+}
+.banner-title {
+  position: absolute;
+  left: 24rpx;
+  bottom: 20rpx;
+  color: #fff;
+  font-size: 30rpx;
+  font-weight: 600;
+  text-shadow: 0 2rpx 6rpx rgba(0, 0, 0, 0.3);
+}
+
+/* 四大专区入口卡片(2x2) */
+.zone-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 24rpx;
+}
+.zone-card {
+  width: 48.5%;
+  border-radius: 20rpx;
+  padding: 40rpx 0 32rpx;
+  text-align: center;
+  margin-bottom: 20rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.05);
+}
+.zone-name {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #333;
+  margin-top: 16rpx;
+}
+.zone-sub {
+  font-size: 22rpx;
+  color: #999;
+  margin-top: 10rpx;
+}
+
+/* 新客联系商家按钮 */
+.contact-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20rpx 24rpx 0;
+  padding: 24rpx 32rpx;
+  border-radius: 16rpx;
+  background: linear-gradient(135deg, #FF6B00, #FF8C3B);
+  box-shadow: 0 6rpx 20rpx rgba(255, 107, 0, 0.25);
+}
+.contact-btn-text {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 2rpx;
+}
+.contact-btn-arrow {
+  font-size: 40rpx;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* 联系商家弹窗 */
+.contact-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.contact-pop {
+  width: 560rpx;
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 48rpx 40rpx 40rpx;
+  text-align: center;
+}
+.pop-title {
+  font-size: 36rpx;
+  font-weight: 800;
+  color: #333;
+}
+.pop-desc {
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 12rpx;
+  line-height: 1.6;
+}
+.pop-wechat {
+  margin: 32rpx 0;
+  padding: 24rpx;
+  background: #FFF7F0;
+  border-radius: 16rpx;
+  font-size: 26rpx;
+  color: #666;
+}
+.pop-wechat-num {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #FF6B00;
+}
+.pop-btn {
+  border-radius: 44rpx;
+  padding: 22rpx 0;
+  font-size: 30rpx;
+  font-weight: 600;
+}
+.pop-btn.copy {
+  background: #FF6B00;
+  color: #fff;
+}
+.pop-btn.cancel {
+  margin-top: 16rpx;
+  background: #F4F5F7;
+  color: #666;
+}
+
+/* 商家管理入口 */
+.admin-entry {
+  margin: 40rpx auto 0;
+  width: 320rpx;
+  text-align: center;
+  font-size: 22rpx;
+  color: #ccc;
+  padding: 16rpx 0;
+}

@@ -1,0 +1,9 @@
+{
+  "name": "admin",
+  "version": "1.0.0",
+  "description": "商家管理端统一入口(白名单校验+商品增删查)",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+}

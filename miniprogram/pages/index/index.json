@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "珠珠童装",
+  "usingComponents": {
+    "search-bar": "/components/search-bar/search-bar",
+    "product-card": "/components/product-card/product-card"
+  }
+}

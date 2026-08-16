@@ -1,0 +1,70 @@
+/* ZhuzhuShop 全局样式
+   设计规范(参考大小孩商城):
+   - 主色: 活力橙 #FF6B00 (按钮/选中态)
+   - 价格红: #FF3B30 (现价/促销)
+   - 背景: #F6F7F9, 卡片白底圆角
+   - 文字: 主 #222, 次 #666, 弱 #999 */
+page {
+  background: #F6F7F9;
+  font-size: 28rpx;
+  color: #222;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+}
+
+/* ---- 通用卡片 ---- */
+.card {
+  background: #fff;
+  border-radius: 16rpx;
+  overflow: hidden;
+}
+
+/* ---- 价格 ---- */
+.price {
+  color: #FF3B30;
+  font-weight: 600;
+}
+.price-symbol {
+  font-size: 22rpx;
+}
+.price-amount {
+  font-size: 34rpx;
+}
+.price-origin {
+  color: #999;
+  font-size: 24rpx;
+  text-decoration: line-through;
+  margin-left: 10rpx;
+  font-weight: 400;
+}
+
+/* ---- 主按钮(橙色) ---- */
+.btn-primary {
+  background: #FF6B00;
+  color: #fff;
+  border-radius: 44rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+  text-align: center;
+  padding: 20rpx 0;
+}
+.btn-primary:active {
+  opacity: 0.85;
+}
+
+/* ---- 安全区 ---- */
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* ---- 空状态 ---- */
+.empty {
+  text-align: center;
+  padding: 160rpx 0;
+  color: #999;
+  font-size: 26rpx;
+}
+.empty-icon {
+  font-size: 80rpx;
+  margin-bottom: 20rpx;
+  display: block;
+}

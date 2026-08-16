@@ -1,0 +1,55 @@
+<view class="page">
+  <!-- 顶部品牌标题 -->
+  <view class="brand-header">
+    <view class="brand-name">珠珠童装</view>
+    <view class="brand-slogan">童装好物 · 组别齐全 · 微信联系下单</view>
+  </view>
+
+  <!-- 搜索框 -->
+  <search-bar placeholder="搜索商品名称" bind:search="onSearch" />
+
+  <!-- 动态宣传图 -->
+  <swiper class="banner" indicator-dots autoplay circular interval="3500" indicator-active-color="#FF6B00">
+    <swiper-item wx:for="{{banners}}" wx:key="id">
+      <view class="banner-item">
+        <image class="banner-img" src="{{item.image}}" mode="aspectFill" />
+        <view class="banner-title">{{item.title}}</view>
+      </view>
+    </swiper-item>
+  </swiper>
+
+  <!-- 新客联系商家 -->
+  <view class="contact-btn" bindtap="showContact">
+    <text class="contact-btn-text">新客联系商家</text>
+    <text class="contact-btn-arrow">›</text>
+  </view>
+
+  <!-- 四大专区入口卡片 -->
+  <view class="zone-grid">
+    <view
+      wx:for="{{zones}}"
+      wx:key="key"
+      class="zone-card"
+      style="background: {{item.bg}};"
+      data-zone="{{item.key}}"
+      bindtap="onZoneTap"
+    >
+      <view class="zone-name">{{item.name}}</view>
+      <view class="zone-sub">点此进入选品 ›</view>
+    </view>
+  </view>
+
+  <!-- 底部: 商家管理入口 -->
+  <view class="admin-entry" bindtap="goAdmin">商家管理入口</view>
+
+  <!-- 联系商家弹窗 -->
+  <view class="contact-mask" wx:if="{{showContactPopup}}" bindtap="closeContact">
+    <view class="contact-pop" catchtap="noop">
+      <view class="pop-title">联系商家</view>
+      <view class="pop-desc">复制商家微信号，添加后发送商品截图即可下单</view>
+      <view class="pop-wechat">微信号：<text class="pop-wechat-num">{{contactWechat}}</text></view>
+      <view class="pop-btn copy" bindtap="copyWechat">复制微信号</view>
+      <view class="pop-btn cancel" bindtap="closeContact">关闭</view>
+    </view>
+  </view>
+</view>

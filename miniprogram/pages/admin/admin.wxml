@@ -1,0 +1,223 @@
+<view class="page {{batchMode ? 'page-batch' : ''}}">
+  <!-- ========== 密码锁界面 ========== -->
+  <view class="card lock" wx:if="{{locked}}">
+    <view class="lock-icon">🔒</view>
+    <view class="lock-title">{{pwdMode === 'setup' ? '设置管理密码' : '请输入管理密码'}}</view>
+    <view class="lock-sub">{{pwdMode === 'setup' ? '首次使用，请设置管理密码（至少4位）' : '仅商家（甲方）可进入商品管理'}}</view>
+
+    <input
+      class="form-input lock-input"
+      password
+      placeholder="{{pwdMode === 'setup' ? '设置密码（至少4位）' : '输入密码'}}"
+      value="{{pwd}}"
+      maxlength="12"
+      bindinput="onPwdInput"
+    />
+    <input
+      wx:if="{{pwdMode === 'setup'}}"
+      class="form-input lock-input"
+      password
+      placeholder="再次输入确认"
+      value="{{pwd2}}"
+      maxlength="12"
+      bindinput="onPwd2Input"
+    />
+
+    <button class="save-btn" bindtap="onPwdConfirm">{{pwdMode === 'setup' ? '确认设置' : '进入管理'}}</button>
+    <view class="lock-back" bindtap="goBack">返回首页</view>
+  </view>
+
+  <!-- ========== 云开发: 白名单校验未通过 ========== -->
+  <view class="card lock" wx:elif="{{denied}}">
+    <view class="lock-icon">🔒</view>
+    <view class="lock-title">无权限访问</view>
+    <view class="lock-sub">管理页仅限商家微信进入。如需授权，请联系开发者将你的微信加入 admins 白名单。</view>
+    <button class="save-btn" bindtap="goBack">返回首页</button>
+  </view>
+
+  <!-- ========== 管理界面 ========== -->
+  <block wx:else>
+    <!-- 上传表单 -->
+    <view class="card form">
+      <view class="form-title">📤 上传商品</view>
+
+      <view class="form-label">商品专区</view>
+      <view class="zone-pick">
+        <view
+          wx:for="{{zones}}"
+          wx:key="key"
+          class="zone-pick-item {{zone === item.key ? 'zone-pick-active' : ''}}"
+          data-key="{{item.key}}"
+          bindtap="onZonePick"
+        >{{item.name}}</view>
+      </view>
+
+      <block wx:if="{{groups.length}}">
+        <view class="form-label">组别</view>
+        <view class="group-pick">
+          <view
+            wx:for="{{groups}}"
+            wx:key="*this"
+            class="group-pick-item {{group === item ? 'group-pick-active' : ''}}"
+            data-group="{{item}}"
+            bindtap="onGroupPick"
+          >{{item}}</view>
+        </view>
+      </block>
+
+      <!-- 小分组选择(仅组别配置了小分组时显示) -->
+      <block wx:if="{{subGroups.length}}">
+        <view class="form-label">小分组</view>
+        <view class="group-pick">
+          <view
+            wx:for="{{subGroups}}"
+            wx:key="*this"
+            class="group-pick-item {{subGroup === item ? 'group-pick-active' : ''}}"
+            data-subgroup="{{item}}"
+            bindtap="onSubGroupPick"
+          >{{item}}</view>
+        </view>
+      </block>
+
+      <view class="form-label">商品名称</view>
+      <input
+        class="form-input"
+        placeholder="如：男童纯棉短袖T恤"
+        value="{{name}}"
+        maxlength="30"
+        bindinput="onNameInput"
+      />
+
+      <!-- 重复商品提示(输入名称时实时检测) -->
+      <view class="dup-hint" wx:if="{{dupHints.length}}">
+        <view class="dup-hint-title">⚠️ 检测到可能重复的商品</view>
+        <view class="dup-hint-item" wx:for="{{dupHints}}" wx:key="name">
+          <text class="dup-tag {{item.same ? 'dup-tag-same' : ''}}">{{item.same ? '同名' : '相近'}}</text>
+          「{{item.name}}」{{item.zoneName ? ' · ' + item.zoneName + ' · ' + item.groupLabel : ''}}
+        </view>
+        <view class="dup-hint-more" wx:if="{{dupTotal > 3}}">… 共 {{dupTotal}} 个</view>
+        <view class="dup-hint-tip">若是同名不同款，可忽略提示直接保存</view>
+      </view>
+
+      <view class="form-label">商品图 / 视频（1-3个）</view>
+      <view class="form-tip">图片需含价格/款号；视频展示上身效果，最长60秒</view>
+      <view class="img-pick" bindtap="onChooseMedia">
+        <view class="img-thumb-wrap" wx:for="{{mediaItems}}" wx:key="index">
+          <image class="img-thumb" src="{{item.type === 'video' ? item.poster : item.url}}" mode="aspectFill" />
+          <view wx:if="{{item.type === 'video'}}" class="vid-badge">🎬</view>
+          <view class="img-del" data-index="{{index}}" catchtap="onRemoveMedia">✕</view>
+        </view>
+        <view class="img-add" wx:if="{{mediaItems.length < 3}}">＋<text class="img-add-tip">拍照/选图/选视频</text></view>
+      </view>
+
+      <button class="save-btn" bindtap="onSave">保存商品</button>
+    </view>
+
+    <!-- 已上传列表 -->
+    <view class="card list">
+      <view class="form-title">📦 已上传商品（{{products.length}}）</view>
+      <view class="list-tip" wx:if="{{!batchMode}}">长按商品可进入批量选择删除</view>
+      <view class="search-row">
+        <input
+          class="form-input list-search"
+          placeholder="输入商品名称检索，可删除"
+          value="{{searchKeyword}}"
+          confirm-type="search"
+          bindinput="onSearchInput"
+        />
+        <view wx:if="{{searchKeyword}}" class="search-clear" bindtap="onSearchClear">✕ 清除</view>
+      </view>
+      <view
+        class="prod-row {{batchMode ? (item.selected ? 'prod-row-selected' : 'prod-row-batch') : ''}}"
+        wx:for="{{products}}"
+        wx:key="id"
+        data-id="{{item.id}}"
+        bindtap="onToggleSelect"
+        bindlongpress="onLongPressProduct"
+      >
+        <view class="prod-check" wx:if="{{batchMode}}">{{item.selected ? '✓' : ''}}</view>
+        <image class="prod-img" src="{{item.cover}}" mode="aspectFill" />
+        <view class="prod-info">
+          <view class="prod-name">{{item.name}}</view>
+          <view class="prod-meta">{{item.zoneName}} · {{item.groupLabel}}</view>
+          <view class="prod-badge">{{item.typeBadge}}</view>
+        </view>
+        <view class="prod-del" wx:if="{{!batchMode}}" data-id="{{item.id}}" catchtap="onDelete">删除</view>
+      </view>
+      <view class="list-empty" wx:if="{{!products.length}}">
+        {{searchKeyword ? '没有找到「' + searchKeyword + '」相关商品' : '还没有上传商品'}}
+      </view>
+    </view>
+
+    <!-- 批量操作栏(长按商品进入) -->
+    <view class="batch-bar" wx:if="{{batchMode}}">
+      <view class="batch-bar-select" bindtap="onSelectAll">{{allSelected ? '取消全选' : '全选'}}</view>
+      <view class="batch-bar-count">已选 {{selectedIds.length}} 项</view>
+      <view class="batch-bar-tag" bindtap="onOpenTagPanel">改标签</view>
+      <view class="batch-bar-cancel" bindtap="onExitBatch">退出</view>
+      <view class="batch-bar-del" bindtap="onBatchDelete">删除</view>
+    </view>
+
+    <!-- 批量修改标签弹层 -->
+    <view class="tag-mask" wx:if="{{tagPanel}}" bindtap="onTagCancel">
+      <view class="tag-panel" catchtap="noop">
+        <view class="tag-title">批量修改标签（{{selectedIds.length}} 个商品）</view>
+        <view class="tag-sub">选择目标分类后应用到选中商品</view>
+
+        <view class="form-label">目标专区</view>
+        <view class="zone-pick">
+          <view
+            wx:for="{{zones}}"
+            wx:key="key"
+            class="zone-pick-item {{tagZone === item.key ? 'zone-pick-active' : ''}}"
+            data-key="{{item.key}}"
+            bindtap="onTagZonePick"
+          >{{item.name}}</view>
+        </view>
+
+        <block wx:if="{{tagGroups.length}}">
+          <view class="form-label">目标组别</view>
+          <view class="group-pick">
+            <view
+              wx:for="{{tagGroups}}"
+              wx:key="*this"
+              class="group-pick-item {{tagGroup === item ? 'group-pick-active' : ''}}"
+              data-group="{{item}}"
+              bindtap="onTagGroupPick"
+            >{{item}}</view>
+          </view>
+        </block>
+
+        <block wx:if="{{tagSubGroups.length}}">
+          <view class="form-label">目标小分组（不选 = 不设置）</view>
+          <view class="group-pick">
+            <view
+              wx:for="{{tagSubGroups}}"
+              wx:key="*this"
+              class="group-pick-item {{tagSubGroup === item ? 'group-pick-active' : ''}}"
+              data-subgroup="{{item}}"
+              bindtap="onTagSubGroupPick"
+            >{{item}}</view>
+          </view>
+        </block>
+
+        <view class="tag-actions">
+          <button class="tag-btn tag-cancel" bindtap="onTagCancel">取消</button>
+          <button class="tag-btn tag-ok" bindtap="onTagConfirm">应用到选中商品</button>
+        </view>
+      </view>
+    </view>
+
+    <!-- 修改密码(仅本地测试模式) -->
+    <view class="pwd-change" wx:if="{{!isCloud}}" bindtap="onChangePwd">修改管理密码</view>
+
+    <view class="tip" wx:if="{{isCloud}}">
+      ✅ 云开发模式：商品图片/视频存云端，所有用户手机都能看到。
+      管理入口仅限 admins 白名单中的微信进入（云开发控制台可随时增删）。
+    </view>
+    <view class="tip" wx:else>
+      ⚠️ 本地测试模式：商品保存在本机，仅当前设备可见。
+      正式使用请切换到云开发（config.js 的 DATA_SOURCE 改为 'cloud'）。
+    </view>
+  </block>
+</view>

@@ -1,0 +1,10 @@
+<view class="product-card card" bindtap="goDetail">
+  <view class="img-wrap">
+    <image class="product-img" src="{{product.cover}}" mode="aspectFill" lazy-load />
+    <view wx:if="{{product.isVideo}}" class="vid-badge">🎬 视频</view>
+  </view>
+  <view class="product-info">
+    <view class="product-name">{{product.name}}</view>
+    <view class="product-sizes">{{product.group}} · 点开查看</view>
+  </view>
+</view>

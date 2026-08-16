@@ -1,0 +1,79 @@
+.page {
+  padding-bottom: 160rpx;
+}
+
+/* 商品大图/视频 */
+.gallery {
+  width: 100%;
+  height: 750rpx;
+  background: #f5f5f5;
+}
+.gallery-img {
+  width: 100%;
+  height: 100%;
+}
+.gallery-video {
+  width: 100%;
+  height: 100%;
+}
+
+/* 信息卡 */
+.info {
+  margin: 20rpx 24rpx 0;
+  padding: 28rpx;
+}
+.info-tags {
+  margin-bottom: 14rpx;
+}
+.info-tag {
+  display: inline-block;
+  font-size: 22rpx;
+  color: #FF6B00;
+  background: #FFF3E6;
+  border-radius: 8rpx;
+  padding: 4rpx 14rpx;
+  margin-right: 12rpx;
+}
+.info-tag-group {
+  color: #2B7DE9;
+  background: #EAF2FE;
+}
+.info-tag-video {
+  color: #E63946;
+  background: #FDECEC;
+}
+.info-name {
+  font-size: 34rpx;
+  font-weight: 700;
+  color: #333;
+  line-height: 1.4;
+}
+.info-tip {
+  font-size: 22rpx;
+  color: #bbb;
+  margin-top: 8rpx;
+}
+
+/* 底部操作栏 */
+.action-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+  padding: 16rpx 24rpx calc(16rpx + env(safe-area-inset-bottom));
+  box-shadow: 0 -4rpx 20rpx rgba(0, 0, 0, 0.05);
+}
+.send-btn {
+  background: linear-gradient(135deg, #FF9F43, #FF6B00);
+  color: #fff;
+  font-size: 30rpx;
+  font-weight: 600;
+  border-radius: 44rpx;
+  padding: 20rpx 0;
+  border: none;
+}
+.send-btn[disabled] {
+  opacity: 0.6;
+  color: #fff;
+}

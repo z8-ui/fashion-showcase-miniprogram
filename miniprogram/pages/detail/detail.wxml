@@ -1,0 +1,34 @@
+<view class="page" wx:if="{{product}}">
+  <!-- 商品图/视频轮播 -->
+  <swiper class="gallery" indicator-dots circular indicator-active-color="#FF6B00">
+    <swiper-item wx:for="{{product.media}}" wx:key="index">
+      <image wx:if="{{item.type === 'image'}}" class="gallery-img" src="{{item.url}}" mode="aspectFit" data-src="{{item.url}}" bindtap="onPreviewImage" />
+      <video
+        wx:else
+        class="gallery-video"
+        src="{{item.url}}"
+        poster="{{item.poster}}"
+        controls
+        object-fit="cover"
+      />
+    </swiper-item>
+  </swiper>
+
+  <!-- 商品信息 -->
+  <view class="info card">
+    <view class="info-tags">
+      <text class="info-tag">{{zoneName}}</text>
+      <text class="info-tag info-tag-group">{{product.group}}</text>
+      <text wx:if="{{product.isVideo}}" class="info-tag info-tag-video">🎬 含视频</text>
+    </view>
+    <view class="info-name">{{product.name}}</view>
+    <view class="info-tip">价格、款号请看商品图</view>
+  </view>
+
+  <!-- 底部固定操作栏 -->
+  <view class="action-bar safe-bottom">
+    <button class="send-btn" bindtap="onSend" disabled="{{generating}}">
+      {{generating ? '保存中...' : '💾 保存商品图 发给商家'}}
+    </button>
+  </view>
+</view>

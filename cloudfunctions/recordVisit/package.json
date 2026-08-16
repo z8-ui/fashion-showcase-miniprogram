@@ -1,0 +1,9 @@
+{
+  "name": "recordVisit",
+  "version": "1.0.0",
+  "description": "用户访问自统计(openid upsert 到 users 集合)",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+}

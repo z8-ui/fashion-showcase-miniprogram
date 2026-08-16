@@ -1,0 +1,439 @@
+.page {
+  padding: 20rpx 24rpx 60rpx;
+}
+
+.card {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 28rpx;
+  margin-bottom: 24rpx;
+}
+
+.form-title {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 24rpx;
+}
+
+.form-label {
+  font-size: 26rpx;
+  color: #666;
+  margin: 24rpx 0 14rpx;
+  font-weight: 600;
+}
+
+.form-tip {
+  font-size: 22rpx;
+  color: #bbb;
+  margin-bottom: 12rpx;
+}
+
+/* 专区选择 */
+.zone-pick {
+  display: flex;
+  flex-wrap: wrap;
+}
+.zone-pick-item {
+  padding: 14rpx 28rpx;
+  margin: 0 16rpx 16rpx 0;
+  border-radius: 12rpx;
+  background: #F4F5F7;
+  font-size: 26rpx;
+  color: #333;
+}
+.zone-pick-active {
+  background: #FFF3E6;
+  color: #FF6B00;
+  border: 2rpx solid #FF6B00;
+  font-weight: 600;
+}
+
+/* 组别选择 */
+.group-pick {
+  display: flex;
+  flex-wrap: wrap;
+}
+.group-pick-item {
+  padding: 14rpx 30rpx;
+  margin: 0 16rpx 16rpx 0;
+  border-radius: 12rpx;
+  background: #F4F5F7;
+  font-size: 26rpx;
+  color: #333;
+}
+.group-pick-active {
+  background: #FFF3E6;
+  color: #FF6B00;
+  border: 2rpx solid #FF6B00;
+  font-weight: 600;
+}
+
+/* 商品名输入 */
+.form-input {
+  background: #F7F8FA;
+  border-radius: 12rpx;
+  padding: 18rpx 24rpx;
+  font-size: 28rpx;
+}
+
+/* 重复商品提示 */
+.dup-hint {
+  margin-top: 14rpx;
+  background: #FFF7E6;
+  border: 2rpx solid #FFE0B3;
+  border-radius: 12rpx;
+  padding: 16rpx 20rpx;
+}
+.dup-hint-title {
+  font-size: 26rpx;
+  font-weight: 600;
+  color: #B25E00;
+  margin-bottom: 10rpx;
+}
+.dup-hint-item {
+  font-size: 24rpx;
+  color: #8A5A00;
+  line-height: 1.7;
+  word-break: break-all;
+}
+.dup-tag {
+  display: inline-block;
+  font-size: 20rpx;
+  color: #8A5A00;
+  background: #FFE0B3;
+  border-radius: 6rpx;
+  padding: 2rpx 10rpx;
+  margin-right: 8rpx;
+}
+.dup-tag-same {
+  color: #fff;
+  background: #FF6B00;
+  font-weight: 600;
+}
+.dup-hint-more {
+  font-size: 22rpx;
+  color: #B25E00;
+  margin-top: 6rpx;
+}
+.dup-hint-tip {
+  font-size: 20rpx;
+  color: #C49A6C;
+  margin-top: 8rpx;
+}
+
+/* 图片/视频选择 */
+.img-pick {
+  display: flex;
+  flex-wrap: wrap;
+}
+.img-thumb-wrap {
+  position: relative;
+  margin: 0 16rpx 16rpx 0;
+}
+.img-thumb {
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: 12rpx;
+  display: block;
+}
+.vid-badge {
+  position: absolute;
+  left: 10rpx;
+  bottom: 10rpx;
+  font-size: 30rpx;
+}
+.img-del {
+  position: absolute;
+  top: -12rpx;
+  right: -12rpx;
+  width: 40rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  border-radius: 50%;
+  font-size: 22rpx;
+}
+.img-add {
+  width: 180rpx;
+  height: 180rpx;
+  border: 2rpx dashed #ccc;
+  border-radius: 12rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #bbb;
+  font-size: 60rpx;
+}
+.img-add-tip {
+  font-size: 20rpx;
+  color: #999;
+}
+
+/* 保存按钮 */
+.save-btn {
+  margin-top: 16rpx;
+  background: linear-gradient(135deg, #FF9F43, #FF6B00);
+  color: #fff;
+  font-size: 30rpx;
+  font-weight: 600;
+  border-radius: 44rpx;
+  border: none;
+}
+
+/* 已上传列表 */
+.search-row {
+  position: relative;
+  margin-bottom: 16rpx;
+}
+.list-search {
+  padding-right: 120rpx;
+}
+.search-clear {
+  position: absolute;
+  right: 20rpx;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  font-size: 24rpx;
+  color: #999;
+}
+.prod-row {
+  display: flex;
+  align-items: center;
+  padding: 16rpx 0;
+  border-bottom: 1rpx solid #F4F5F7;
+}
+.prod-row:last-child {
+  border-bottom: none;
+}
+.prod-img {
+  width: 110rpx;
+  height: 110rpx;
+  border-radius: 12rpx;
+  margin-right: 20rpx;
+  flex-shrink: 0;
+}
+.prod-info {
+  flex: 1;
+  min-width: 0;
+}
+.prod-name {
+  font-size: 27rpx;
+  color: #333;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.prod-meta {
+  font-size: 22rpx;
+  color: #999;
+  margin-top: 6rpx;
+}
+.prod-badge {
+  display: inline-block;
+  font-size: 20rpx;
+  color: #E63946;
+  background: #FDECEC;
+  border-radius: 6rpx;
+  padding: 2rpx 10rpx;
+  margin-top: 6rpx;
+}
+.prod-del {
+  color: #E63946;
+  font-size: 24rpx;
+  padding: 10rpx 16rpx;
+  margin-left: 12rpx;
+  flex-shrink: 0;
+}
+.list-empty {
+  text-align: center;
+  color: #bbb;
+  font-size: 26rpx;
+  padding: 40rpx 0;
+}
+
+/* 密码锁 */
+.lock {
+  text-align: center;
+  padding: 60rpx 40rpx;
+}
+.lock-icon {
+  font-size: 90rpx;
+}
+.lock-title {
+  font-size: 34rpx;
+  font-weight: 700;
+  color: #333;
+  margin-top: 24rpx;
+}
+.lock-sub {
+  font-size: 24rpx;
+  color: #999;
+  margin: 12rpx 0 40rpx;
+}
+.lock-input {
+  margin-bottom: 20rpx;
+  text-align: left;
+}
+.lock-back {
+  margin-top: 32rpx;
+  font-size: 26rpx;
+  color: #999;
+}
+
+/* 修改密码入口 */
+.pwd-change {
+  text-align: center;
+  font-size: 24rpx;
+  color: #999;
+  padding: 8rpx 0 24rpx;
+}
+
+/* 提示 */
+.tip {
+  font-size: 22rpx;
+  color: #bbb;
+  line-height: 1.6;
+  padding: 0 12rpx;
+}
+
+/* ========== 批量选择删除 ========== */
+.page-batch {
+  padding-bottom: 160rpx;  /* 给底部批量操作栏留空间 */
+}
+.list-tip {
+  font-size: 22rpx;
+  color: #bbb;
+  margin: -8rpx 0 16rpx;
+}
+/* 批量模式下商品行 */
+.prod-row-batch {
+  border-radius: 12rpx;
+}
+.prod-row-selected {
+  background: #FFF8F0;
+  border-radius: 12rpx;
+}
+/* 圆形选择框(批量模式下显示) */
+.prod-check {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  border: 2rpx solid #ccc;
+  background: #fff;
+  margin-right: 20rpx;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24rpx;
+  color: #fff;
+  box-sizing: border-box;
+}
+.prod-row-selected .prod-check {
+  background: #FF6B00;
+  border-color: #FF6B00;
+}
+/* 底部批量操作栏 */
+.batch-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+  box-shadow: 0 -4rpx 20rpx rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  padding: 20rpx 24rpx calc(20rpx + env(safe-area-inset-bottom));
+  z-index: 100;
+}
+.batch-bar-select {
+  font-size: 28rpx;
+  color: #333;
+  padding: 8rpx 16rpx;
+}
+.batch-bar-count {
+  flex: 1;
+  text-align: center;
+  font-size: 26rpx;
+  color: #666;
+}
+.batch-bar-cancel {
+  font-size: 26rpx;
+  color: #999;
+  padding: 8rpx 16rpx;
+}
+.batch-bar-tag {
+  font-size: 26rpx;
+  color: #FF6B00;
+  padding: 8rpx 16rpx;
+}
+.batch-bar-del {
+  background: #E63946;
+  color: #fff;
+  font-size: 28rpx;
+  font-weight: 600;
+  border-radius: 40rpx;
+  padding: 14rpx 48rpx;
+  margin-left: 12rpx;
+}
+
+/* 批量修改标签弹层 */
+.tag-mask {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 200;
+  display: flex;
+  align-items: flex-end;
+}
+.tag-panel {
+  width: 100%;
+  background: #fff;
+  border-radius: 24rpx 24rpx 0 0;
+  padding: 32rpx 28rpx calc(32rpx + env(safe-area-inset-bottom));
+  box-sizing: border-box;
+  max-height: 75vh;
+  overflow-y: auto;
+}
+.tag-title {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #333;
+}
+.tag-sub {
+  font-size: 22rpx;
+  color: #bbb;
+  margin: 8rpx 0 8rpx;
+}
+.tag-actions {
+  display: flex;
+  margin-top: 36rpx;
+}
+.tag-btn {
+  flex: 1;
+  border-radius: 40rpx;
+  font-size: 30rpx;
+  border: none;
+}
+.tag-btn::after {
+  border: none;
+}
+.tag-cancel {
+  background: #F4F5F7;
+  color: #666;
+  margin-right: 20rpx;
+}
+.tag-ok {
+  background: linear-gradient(135deg, #FF9F43, #FF6B00);
+  color: #fff;
+  font-weight: 600;
+}

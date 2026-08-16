@@ -1,0 +1,9 @@
+{
+  "desc": "ZhuzhuShop 珠珠童装",
+  "rules": [
+    {
+      "action": "allow",
+      "page": "*"
+    }
+  ]
+}
