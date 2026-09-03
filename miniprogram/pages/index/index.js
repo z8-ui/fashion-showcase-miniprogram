@@ -5,6 +5,8 @@ const config = require('../../utils/config')
 Page({
   data: {
     banners: [],
+    brandName: config.BRAND_NAME,      // 品牌名(可配置)
+    brandSlogan: config.BRAND_SLOGAN,  // 品牌标语(可配置)
     zones: config.ZONES,        // 专区入口卡片(静态, 来自配置)
     contactWechat: config.CONTACT_WECHAT,  // 商家微信号
     showContactPopup: false     // 联系商家弹窗开关
@@ -22,12 +24,12 @@ Page({
 
   // 转发给好友/群
   onShareAppMessage() {
-    return { title: '珠珠童装 - 精选童装，欢迎选购', path: '/pages/index/index' }
+    return { title: config.APP_NAME + ' - 精选好物，欢迎选购', path: '/pages/index/index' }
   },
 
   // 分享到朋友圈
   onShareTimeline() {
-    return { title: '珠珠童装 - 精选童装，欢迎选购' }
+    return { title: config.APP_NAME + ' - 精选好物，欢迎选购' }
   },
 
   async loadHome() {

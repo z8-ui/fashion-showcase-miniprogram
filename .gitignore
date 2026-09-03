@@ -1,7 +1,7 @@
 # 微信开发者工具私人配置(本地设置, 不入库)
 project.private.config.json
 
-# 甲方宣传图原图备份(本地保留, 不入库)
+# 高清宣传图本地备份(不入库; 首页实际用的是 miniprogram/images/1.jpg)
 1_original_backup.jpg
 
 # 依赖与日志

@@ -1,25 +1,46 @@
-// ZhuzhuShop 全局配置
+// 全局配置
 // 注意: 本文件只放"静态常量", 不放业务逻辑。
+//
+// ⭐ 开源模板使用说明:
+//   想改成你自己的品牌/商品类目, 全局只需改这一个文件:
+//     1. 品牌信息(APP_NAME / BRAND_NAME / BRAND_SLOGAN / CONTACT_WECHAT)
+//     2. 商品专区 ZONES(分类结构, 目前是童装四专区示例)
+//   改完 config.js 后, 再把 app.json 与 pages/index/index.json 里的
+//   navigationBarTitleText 同步成你的品牌名即可(共两处)。
+
+// ========== 品牌信息(部署时改成你自己的) ==========
+const APP_NAME = '童装优选'            // 小程序名(导航栏/分享卡片兜底标题)
+const BRAND_NAME = '童装优选'          // 首页顶部品牌名
+const BRAND_SLOGAN = '童装好物 · 组别齐全 · 微信联系下单'  // 首页品牌标语
+const CONTACT_WECHAT = 'your-wechat-id'   // 首页"联系商家"弹窗显示的微信号(占位符)
+
+// ========== 首页轮播宣传图 ==========
+// image: 包内图片路径或云存储 fileID 都行; title: 轮播文案
+const HOME_BANNERS = [
+  { image: '/images/1.jpg', title: APP_NAME + ' 欢迎选购' },
+  { image: '/images/1.jpg', title: '男女童专区 组别齐全' },
+  { image: '/images/1.jpg', title: '微信联系商家 便捷下单' }
+]
 
 module.exports = {
-  APP_NAME: '珠珠童装',
+  APP_NAME,
+  BRAND_NAME,
+  BRAND_SLOGAN,
+  CONTACT_WECHAT,
+  HOME_BANNERS,
 
   // 后端接口地址(留空 = 使用本地数据)
   BASE_URL: '',
 
   // 数据源开关:
-  //   'local'  内置演示商品 + 本地持久化商品库(测试号阶段, 本机可见)
+  //   'local'  本地持久化商品库(单机演示, 无后台依赖)
   //   'cloud'  云开发云存储+云数据库(正式版, 全用户共享)
   DATA_SOURCE: 'cloud',
 
   // 云开发环境 ID(留空 = 默认环境; 多个环境时填具体 envID)
   CLOUD_ENV: '',
 
-  // 商家微信号(首页"新客联系商家"弹窗显示)
-  // 注意: 仓库内为占位符, 部署时替换为真实商家微信号
-  CONTACT_WECHAT: 'your-wechat-id',
-
-  // 四大专区(甲方要求: 男童裤子/女童裤子/男童上衣/女童上衣)
+  // 商品专区: 首页四入口卡片 + 组别/小分组三级分类
   // gender: boy男童 girl女童;  part: top上衣 pants裤子
   // groups: 专区下的组别(点进专区显示组别小卡片)
   // subGroups: 可选, 组别下的第三级小分组(如 青少年组 -> 牛仔裤/休闲裤/工装裤)
@@ -61,6 +82,6 @@ module.exports = {
     }
   ],
 
-  // 商家上传商品 -> 本地存储 key
+  // 商家上传商品 -> 本地存储 key(⚠️ 勿改, 改动会导致旧数据不可见)
   PRODUCTS_KEY: 'zhuzhu_products'
 }

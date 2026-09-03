@@ -18,7 +18,7 @@ Page({
   onShareAppMessage() {
     const p = this.data.product
     return {
-      title: (p ? p.name + ' - ' : '') + '珠珠童装',
+      title: (p ? p.name + ' - ' : '') + config.APP_NAME,
       path: '/pages/detail/detail?id=' + this.productId
     }
   },
@@ -27,7 +27,7 @@ Page({
   onShareTimeline() {
     const p = this.data.product
     return {
-      title: (p ? p.name + ' - ' : '') + '珠珠童装',
+      title: (p ? p.name + ' - ' : '') + config.APP_NAME,
       query: 'id=' + this.productId
     }
   },
@@ -60,7 +60,7 @@ Page({
     wx.previewImage({ current, urls })
   },
 
-  // ---- 保存商品图(直接保存甲方上传的原图, 无附加信息) ----
+  // ---- 保存商品图(直接保存商家上传的原图, 无附加信息) ----
   async onSend() {
     const p = this.data.product
     if (!p) return

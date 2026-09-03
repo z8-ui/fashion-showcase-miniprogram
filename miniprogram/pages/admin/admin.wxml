@@ -3,7 +3,7 @@
   <view class="card lock" wx:if="{{locked}}">
     <view class="lock-icon">🔒</view>
     <view class="lock-title">{{pwdMode === 'setup' ? '设置管理密码' : '请输入管理密码'}}</view>
-    <view class="lock-sub">{{pwdMode === 'setup' ? '首次使用，请设置管理密码（至少4位）' : '仅商家（甲方）可进入商品管理'}}</view>
+    <view class="lock-sub">{{pwdMode === 'setup' ? '首次使用，请设置管理密码（至少4位）' : '仅商家可进入商品管理'}}</view>
 
     <input
       class="form-input lock-input"

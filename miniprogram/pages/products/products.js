@@ -50,7 +50,7 @@ Page({
       path += '?keyword=' + encodeURIComponent(d.keyword)
     }
     return {
-      title: d.zoneName || '珠珠童装 - 商品精选',
+      title: d.zoneName || config.APP_NAME + ' - 商品精选',
       path
     }
   },

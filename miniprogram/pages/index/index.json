@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "珠珠童装",
+  "navigationBarTitleText": "童装优选",
   "usingComponents": {
     "search-bar": "/components/search-bar/search-bar",
     "product-card": "/components/product-card/product-card"

@@ -203,7 +203,7 @@ Page({
   // 拍照/相册选图或视频(最多3个)
   // 清晰度: 用 compressed 压缩图(约100-400KB/张)控制云存储容量与流量费用;
   //         2000张原图约10GB(超套餐2GB后按3元/GB/月计), 压缩图仅0.5GB。
-  //         若甲方要求看清图片上的价格/款号小字, 可改回 ['original']
+  //         若商家要求看清图片上的价格/款号小字, 可改回 ['original']
   onChooseMedia() {
     const remain = 3 - this.data.mediaItems.length
     if (remain <= 0) return

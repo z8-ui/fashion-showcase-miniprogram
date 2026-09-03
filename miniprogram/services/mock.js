@@ -1,15 +1,11 @@
-// mock.js - 数据层(正式版)
-// ⚠️ 2026-08 按甲方要求清理:
-//    - 移除全部内置演示商品(测试图), 商品只来自甲方手机上传
+// mock.js - 本地数据层(单机演示 / 无后台调试用)
+// ⚠️ 设计说明:
+//    - 无内置演示商品(测试图), 商品来自商家端上传(本机持久化)
 //    - 分类: 专区(gender+part) -> 组别(group) -> 小分组(subGroup, 可选)
 //    - 商品模型: { id, name, gender, part, group, subGroup?,
 //                  media: [{ type: 'image'|'video', url, poster? }] }
-//    - 测试号阶段存本地持久目录; 云开发阶段存云存储
-//    - 数据形状与云开发版保持一致, 页面代码零改动。
+//    - 数据形状与云开发版(cloud.js)完全一致, 页面代码零改动
 const config = require('../utils/config')
-
-// 首页动态宣传图(正式版: 甲方提供的 1.jpg)
-const BANNER_IMG = '/images/1.jpg'
 
 // ---------------- 商家上传商品 -> 本地持久化存储 ----------------
 const LOCAL_KEY = config.PRODUCTS_KEY
@@ -32,7 +28,7 @@ function decorate(p) {
   })
 }
 
-// 全部商品(仅甲方上传)
+// 全部商品(商家端上传的本机商品)
 function allProducts() {
   return loadLocal().map(decorate)
 }
@@ -53,14 +49,14 @@ function matchFilter(p, filter = {}) {
 // ---------------- 对外查询函数(全部 Promise, 模拟异步) ----------------
 const delay = (ms = 80) => new Promise(r => setTimeout(r, ms))
 
-// 首页: 动态宣传图(专区入口卡片由页面直接读 config, 无需接口)
+// 首页: 轮播宣传图(图源与文案统一在 utils/config.js 的 HOME_BANNERS 配置)
 async function getHomeData() {
   await delay()
-  const banners = [
-    { id: 'hb1', image: BANNER_IMG, title: '珠珠童装 欢迎选购' },
-    { id: 'hb2', image: BANNER_IMG, title: '男女童专区 组别齐全' },
-    { id: 'hb3', image: BANNER_IMG, title: '微信联系商家 便捷下单' }
-  ]
+  const banners = config.HOME_BANNERS.map((b, i) => ({
+    id: 'hb' + (i + 1),
+    image: b.image,
+    title: b.title
+  }))
   return { banners }
 }
 

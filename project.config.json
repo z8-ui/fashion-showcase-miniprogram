@@ -1,5 +1,5 @@
 {
-  "description": "ZhuzhuShop 珠珠童装微信小程序",
+  "description": "服装图片展示小程序 - 童装分类展示开源模板(微信原生+云开发)",
   "miniprogramRoot": "miniprogram/",
   "packOptions": {
     "ignore": [],
@@ -35,7 +35,7 @@
   "libVersion": "3.17.1",
   "appid": "",
   "cloudfunctionRoot": "cloudfunctions/",
-  "projectname": "ZhuzhuShop",
+  "projectname": "fashion-showcase-miniprogram",
   "condition": {},
   "editorSetting": {
     "tabIndent": "insertSpaces",

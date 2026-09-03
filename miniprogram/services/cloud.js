@@ -12,9 +12,6 @@ const config = require('../utils/config')
 const db = wx.cloud.database()
 const PRODUCTS_COLL = 'products'
 
-// 首页动态宣传图(包内图片, 无需云存储)
-const BANNER_IMG = '/images/1.jpg'
-
 // 商品补充派生字段: id(云数据库 _id -> id, 兼容本地版) + 封面图
 //   image -> url; video -> poster(视频封面)
 function decorate(p) {
@@ -46,13 +43,13 @@ function buildCond(filter = {}) {
 }
 
 // ---------------- 对外查询函数(全部 Promise) ----------------
-// 首页: 动态宣传图
+// 首页: 轮播宣传图(图源与文案统一在 utils/config.js 的 HOME_BANNERS 配置)
 async function getHomeData() {
-  const banners = [
-    { id: 'hb1', image: BANNER_IMG, title: '珠珠童装 欢迎选购' },
-    { id: 'hb2', image: BANNER_IMG, title: '男女童专区 组别齐全' },
-    { id: 'hb3', image: BANNER_IMG, title: '微信联系商家 便捷下单' }
-  ]
+  const banners = config.HOME_BANNERS.map((b, i) => ({
+    id: 'hb' + (i + 1),
+    image: b.image,
+    title: b.title
+  }))
   return { banners }
 }
 

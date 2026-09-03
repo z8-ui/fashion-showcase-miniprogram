@@ -1,8 +1,8 @@
 <view class="page">
-  <!-- 顶部品牌标题 -->
+  <!-- 顶部品牌标题(名称/标语来自 utils/config.js) -->
   <view class="brand-header">
-    <view class="brand-name">珠珠童装</view>
-    <view class="brand-slogan">童装好物 · 组别齐全 · 微信联系下单</view>
+    <view class="brand-name">{{brandName}}</view>
+    <view class="brand-slogan">{{brandSlogan}}</view>
   </view>
 
   <!-- 搜索框 -->
