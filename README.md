@@ -11,12 +11,14 @@
 ## 📱 界面预览
 
 <p align="center">
-  <img src="docs/screenshots/home.png" width="32%" alt="首页: 品牌+搜索+轮播+专区入口"/>
-  <img src="docs/screenshots/products.png" width="32%" alt="商品列表: 组别/小分组筛选+双列卡片"/>
+  <img src="docs/screenshots/home.jpg" width="32%" alt="首页: 品牌+搜索+轮播+专区入口"/>
+  <img src="docs/screenshots/products.jpg" width="32%" alt="商品列表: 组别/小分组筛选+双列卡片"/>
+  <img src="docs/screenshots/admin.jpg" width="32%" alt="商家管理: 手机端上传/删除商品"/>
 </p>
 
 > 左：首页（品牌标题 / 搜索 / 轮播宣传图 / 四大专区入口）
-> 右：专区商品列表（组别 chips + 小分组筛选 + 图/视频混排卡片）
+> 中：专区商品列表（组别 chips + 小分组筛选 + 图/视频混排卡片）
+> 右：商家管理（手机端上传 / 搜索 / 删除商品）
 
 ## ✨ 为什么值得一看
 
@@ -122,8 +124,9 @@ BRAND_NAME: '童装优选',        // 首页顶部品牌名
 BRAND_SLOGAN: '童装好物 · 组别齐全 · 微信联系下单',
 CONTACT_WECHAT: 'your-wechat-id',   // 联系商家微信号
 
-// 首页轮播(换图: 替换 /images/1.jpg 或填云存储 fileID)
-HOME_BANNERS: [...],
+// 首页轮播: 默认空(占位); 真实宣传图与联系微信写在 config.local.js
+// (该文件不入库, 详见 config.js 文件末尾说明)
+HOME_BANNERS: [],
 ```
 
 > 再顺手把 `app.json` / `pages/index/index.json` 的 `navigationBarTitleText` 同步成你的品牌名即可。

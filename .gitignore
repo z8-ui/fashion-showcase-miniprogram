@@ -8,3 +8,9 @@ project.private.config.json
 node_modules/
 *.log
 .DS_Store
+
+# 真实档口宣传图(含商家信息, 不入库; 部署时自行放入)
+miniprogram/images/1.jpg
+
+# 本地私有配置(真实微信/轮播, 不入库)
+miniprogram/utils/config.local.js

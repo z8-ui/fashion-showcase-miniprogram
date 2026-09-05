@@ -16,11 +16,9 @@ const CONTACT_WECHAT = 'your-wechat-id'   // 首页"联系商家"弹窗显示的
 
 // ========== 首页轮播宣传图 ==========
 // image: 包内图片路径或云存储 fileID 都行; title: 轮播文案
-const HOME_BANNERS = [
-  { image: '/images/1.jpg', title: APP_NAME + ' 欢迎选购' },
-  { image: '/images/1.jpg', title: '男女童专区 组别齐全' },
-  { image: '/images/1.jpg', title: '微信联系商家 便捷下单' }
-]
+// 开源版默认空轮播; 部署时把宣传图放入 miniprogram/images/1.jpg 后,
+// 在本地 config.local.js 中覆盖 HOME_BANNERS(该文件不入库, 见文件末尾说明)。
+const HOME_BANNERS = []
 
 module.exports = {
   APP_NAME,
@@ -85,3 +83,15 @@ module.exports = {
   // 商家上传商品 -> 本地存储 key(⚠️ 勿改, 改动会导致旧数据不可见)
   PRODUCTS_KEY: 'zhuzhu_products'
 }
+
+// ========== 本地私有覆盖(不入库) ==========
+// 同目录放一个 config.local.js(已在 .gitignore), 即可覆盖上方任意配置:
+//   module.exports = {
+//     CONTACT_WECHAT: '你的真实微信号',
+//     HOME_BANNERS: [ { image: '/images/1.jpg', title: '欢迎选购' }, ... ],
+//   }
+// 这样 GitHub 公开版永远只含占位符, 本地真实配置不会误传。
+try {
+  const _local = require('./config.local.js')
+  Object.keys(_local).forEach(k => { module.exports[k] = _local[k] })
+} catch (e) { /* 无本地配置时忽略 */ }
